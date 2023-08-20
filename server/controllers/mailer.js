@@ -11,7 +11,7 @@ export const registerMail=async(req,res,next)=>{
 
     
     const {username,useremail,text,subject}=req.body
-    console.log({username,useremail,text,subject});
+    // console.log({username,useremail,text,subject});
    if(!username||!useremail){
     return res.status(401).json({message:"All fields are required"})
    }

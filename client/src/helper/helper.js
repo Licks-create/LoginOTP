@@ -12,7 +12,7 @@ axois.defaults.baseURL=process.env.React_App_Server_Domain
 export async function authenticate(username){
     try {
         const auth = await axois.post('/api/authenticate',{username})
-        console.log({auth});
+        // console.log({auth});
         
         return auth;
     } catch (error) {
@@ -26,7 +26,7 @@ export async function authenticate(username){
 export async function getUser({username}){
     try {
         const {data}= await axois.get(`api/user/${username}`)
-        console.log(data,data?.data[0]);
+        // console.log(data,data?.data[0]);
         
         return data?.data[0];
     } catch (error) {
@@ -44,13 +44,13 @@ export async function registerUser(credentials){
     try {
         const {data:{message},status}= await axois.post(`api/register`,credentials)
         let { username,email}=credentials
-        console.log({status,message});
+        // console.log({status,message});
         
         if(status===201){
             await axios.post('/api/registerMail',{username,useremail:email,text:"Email from vivegam corporation limited",subject:"registration successfull"})
         }
 
-        console.log({credentials});
+        // console.log({credentials});
         
         return {status,message}
 
@@ -71,7 +71,7 @@ export async function verifyPassword({username,password}){
           return {data,status}
         }
     } catch (error) {
-        console.log({error})
+        // console.log({error})
 
         if(error?.response)
         return Promise.reject(error?.response?.data?.message)
@@ -86,7 +86,7 @@ export async function verifyPassword({username,password}){
 export async function updateUser(response){
     try {
         const token= await localStorage.getItem('token')
-        console.log({token});
+        // console.log({token});
         
         const data =await axois.put('/api/updateUser',response,{headers:{"authorization":`Bearer ${token}`}})
         return {data}
@@ -109,7 +109,7 @@ export async function generateOTP(username){
         if(status===201){
             let {email} = await getUser({username})
             let text=`Your password recovery otp is ${OTP}`
-            console.log({email})
+            // console.log({email})
 
 
             await axios.post('/api/registerMail',{username,useremail:email,text,subject:"verify OTP"})
@@ -131,7 +131,7 @@ export async function generateOTP(username){
 // verify otp
 export async function verifyOTP({username,otp}){
     try {
-        console.log(otp,{username,otp})
+        // console.log(otp,{username,otp})
        const {data,status}=await axios.get(`/api/verifyOTP?username=${username}&&otp=${otp}`)
        return {data,status};
 
@@ -144,7 +144,7 @@ export async function verifyOTP({username,otp}){
 
 // reset password
 export async function resetPassword({username,password}){
-    console.log({username,password});
+    // console.log({username,password});
     
     try {
         const {data,status}=await axois.put('/api/resetPassword',{username,newPassword:password})

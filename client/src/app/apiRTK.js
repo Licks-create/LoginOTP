@@ -59,8 +59,8 @@ export const apiRTK=createApi({
 
                     // resetApistate does clear cache completely and every subscriptions
                 } catch (err) {
-                    console.log({err})
-                    console.log(err?.error?.data?.message);
+                    // console.log({err})
+                    // console.log(err?.error?.data?.message);
                     
                     toast.error(err?.error?.error||err?.error?.data?.message)
                 }

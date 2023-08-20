@@ -17,8 +17,10 @@ router.route('/authenticate').post(controller.verifyUser,async(req,res,next)=>{
     res.status(200).json('authenticate routes')
 })//authenticate User
 router.route('/login').post(controller.login)// login in app
+
+
  
-// verifytoken
+// verifytoken 
 // router.use(verifyToken)
 
 

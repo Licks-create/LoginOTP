@@ -23,24 +23,24 @@ const Recovery = () => {
     const [{isLoading,apiData,serverError}]=useFetch(`user/${username}`)
     const [otp,setOtp]=useState()
 
-    console.log(!username)
+    // console.log(!username)
     const genOTP=async(user)=>{
         if(!user)
       return toast.error("invalid username")
         try {
             const data=await generateOTP(username)
-            console.log(data)
+            // console.log(data)
         } catch (error) {
             if(error?.response)
             toast.error(error?.response?.data?.message)
             else
             toast.error(error?.message)
-            console.log(error)
+            // console.log(error)
         }
         
     }
     useEffect(()=>{
-        console.log("useeffect");
+        // console.log("useeffect");
          
         if(Boolean(username)===true) 
         genOTP(username)
@@ -66,7 +66,7 @@ const Recovery = () => {
             }
             } catch (error) {                
                 toast.dismiss(toastId)
-                console.log(error);
+                // console.log(error);
                 if(error?.error?.response)
                 toast.error(error?.error?.response?.data?.message)
         }

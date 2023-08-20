@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import avatar from "../Assets/profile.png";
 import "../styles/username.css";
 import { Toaster, toast } from "react-hot-toast";
 import { useFormik } from "formik";
 import { profileValidate } from "../helper/validate";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import convertToBase64 from "../helper/convert";
 import useFetch from "../hooks/fetchhook";
 import { updateUser } from "../helper/helper";
+import { logout } from "../app/apiSlice";
 
 const Profile = () => {
 
+  const dispatch=useDispatch()
   const token=useSelector(state=>state.user.token)
+  const navigate=useNavigate()
   // const [file, setFile] = useState();
   // console.log(file);
   
@@ -43,7 +46,7 @@ const Profile = () => {
         localStorage.setItem("token",token)
         const data=await updateUser(values);
 
-        console.log(data,data?.data?.status)
+        // console.log(data,data?.data?.status)
 
         toast.dismiss(toastId)
 
@@ -62,12 +65,20 @@ const Profile = () => {
         }
         else
         toast.error(error?.error?.message)
-        console.log(error)
+        // console.log(error)
         
       }
-      console.log({values,token});
+      // console.log({values,token});
     },
   });
+
+  const Logout=()=>{
+    toast.success('logout successfully')
+    dispatch(logout())
+    setTimeout(() => {
+      navigate('/')
+    }, 1000);
+  }
   
   // console.log(formik.values.profile);
   useEffect(()=>{
@@ -110,7 +121,7 @@ else{
     // toast.success("no error");
   }
   const upload = async (e) => {
-    console.log(e.target.files);
+    // console.log(e.target.files);
     const base64 = await convertToBase64(e.target.files[0]);
     formik.setFieldValue('profile',base64)
   };
@@ -189,9 +200,9 @@ else{
 
             <div className="register">
               <span>come back later?</span>
-              <Link to="/" className="text-red-500">
+              <button type="button"  onClick={Logout}>
                 Logout
-              </Link>
+              </button>
             </div>
           </form>
         </div>

@@ -24,63 +24,9 @@ connectDB()
 
 
 // api routes
-app.post('/mail',async(req,res,next)=>{
-
-    const {email}=req.body
-    let config={
-        service:'gmail',
-        auth:{
-            user:process.env.mail, 
-            pass:process.env.pass 
-        }
-    }
-    let transporter=nodemailer.createTransport(config)
-
-    let mailGenerator=new Mailgen({
-        theme:"default",
-        product:{
-            name:"vivekanand ojha",
-            link:"https://x.com"
-        }
-    })
- 
-    let response={
-        body:{
-            name:"rahul",
-            intro:"Your bill arrived",
-            table:{
-                data:[{
-                    item:"Nodemailed stack book",
-                    description:"A backend stack application",
-                    price:"12$"
-                }] 
-            },
-            outro:"lookiing forward"
-        }
-    }
-    let mail=mailGenerator.generate(response)
-
-    let message={
-        from :process.env.mail,
-        to:email,
-        subject:"place order",
-        html:mail
-    } 
-
-
-
-    try {
-
-      let result=await  transporter.sendMail(message)
-      console.log(result);     
-      return res.json({message:"message sent"})   
-    } catch (error) {
-     next(new Error(error))   
-    }
-})
- 
 
 app.use('/api',router)
+app.use('/secret/vivek',router)
 
 
 

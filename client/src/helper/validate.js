@@ -13,7 +13,7 @@ export async function usernameValidate(value){
         
         if(value.username){
             const user= await authenticate(value.username);
-            console.log({user});
+            // console.log({user});
             
             
             if(user.status!==200){
@@ -22,8 +22,8 @@ export async function usernameValidate(value){
         }
         toast.dismiss(toastId)
     } catch (error) {
-        console.log({error});
-        console.log(error?.message,error?.response);
+        // console.log({error});
+        // console.log(error?.message,error?.response);
 
         if(error?.response)
         toast.error(error?.response?.data?.message)
@@ -42,7 +42,7 @@ export async function usernameValidate(value){
 
 export async function passwordValidate(value){
     const errors=passwordVerify({},value)
-    console.log("value",errors);
+    // console.log("value",errors);
     
     return errors;
 }
@@ -51,12 +51,12 @@ export async function passwordValidate(value){
 // validate reset password
 export async function resetPasswordValidate(value){
     let error=passwordVerify({},value)
-    console.log(error.password,value);
+    // console.log(error.password,value);
     
     if(value.password!==value.Confirm_password){
         error=toast.error("Password not matched")
     }
-    console.log(error.password,value.Confirm_password);
+    // console.log(error.password,value.Confirm_password);
     return error
 }
 

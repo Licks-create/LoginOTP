@@ -26,7 +26,7 @@ const Reset = () => {
             const toastId=toast.loading('reseting password..')
             try {
                 const data=await resetPassword({password:values.password,username})
-                console.log(data)
+                // console.log(data)
 
                 toast.dismiss(toastId)
                 if(data.status===200){
@@ -37,14 +37,14 @@ const Reset = () => {
                 }
             } catch (error) {
                 toast.dismiss(toastId)
-                console.log(error,error?.error?.message)
+                // console.log(error,error?.error?.message)
                 if(error?.error?.response)
                 toast.error(error?.error?.response?.data?.message)
                 else
                  toast.error(error?.error?.message)
                 
             }
-            console.log(values)
+            // console.log(values)
         }
     })
 

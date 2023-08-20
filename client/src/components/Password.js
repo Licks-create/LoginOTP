@@ -45,16 +45,16 @@ const Password = () => {
                 // useDispatch
                 // console.log({data});
                 // console.log({dataRedux});
-                console.log(values)
+                // console.log(values)
                 toast.dismiss(toastId)
                 if(status===200){
-                    console.log(data.message);
+                    // console.log(data.message);
                     dispatch(setToken(data.accessToken))
                     dispatch(setLogin(true))
                 }
                 
             } catch (error) {
-                console.log({error})
+                // console.log({error})
                 toast.dismiss(toastId)
                 toast.error(error)
             }

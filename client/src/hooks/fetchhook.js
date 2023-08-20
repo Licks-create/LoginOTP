@@ -15,7 +15,7 @@ export default function useFetch(query){
         try {
             setData(pre=>({...pre,isLoading:true}))
             const {data,status}=await axios.get(`/api/${query}`)
-            console.log({data,status});
+            // console.log({data,status});
           
             if(status===201){
             setData(pre=>({...pre,isLoading:false,apiData:data,status}))
@@ -24,7 +24,7 @@ export default function useFetch(query){
         else
         setData(pre=>({...pre,isLoading:false}))
         } catch (error) {
-           console.log("error",error.message);
+          //  console.log("error",error.message);
            
             setData(pre=>({...pre,isLoading:false,serverError:error||error?.message}))
         }

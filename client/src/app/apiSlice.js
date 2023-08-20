@@ -24,8 +24,16 @@ const apiSlice=createSlice({
         setLogin:(state,action)=>{            
             state.data.login=action.payload            
         },
+        logout:(state,action)=>{
+            state.data={
+                username:"",
+                register:false,
+                login:false
+            };
+            state.token="";
+        }
     }
 })
 
-export const {setData,setToken,setActivity,setLogin} =apiSlice.actions
+export const {setData,setToken,setActivity,setLogin,logout} =apiSlice.actions
 export default apiSlice.reducer

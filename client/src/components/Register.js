@@ -100,7 +100,7 @@ const Register = () => {
     })
 
     useEffect(()=>{
-        console.log({isSuccess,isError,successMessage,errorMessage});
+        // console.log({isSuccess,isError,successMessage,errorMessage});
         
         if (isSuccess) {
             toast.success(successMessage)
@@ -131,7 +131,7 @@ const Register = () => {
         if(e.target?.files[0]){
         const base64=await convertToBase64(e.target?.files[0])
         formik.values.profile=file;
-        console.log((base64.length));        
+        // console.log((base64.length));        
         setFile(base64)
     }
     }

@@ -11,7 +11,7 @@ export async function verifyUser(req,res,next){
 
     
     const {username} = req.method=='GET'?req.query:req.body
-    console.log({username});
+    // console.log({username});
 
     if(!username){
         return res.status(403).json({message:"username required!"})
@@ -196,7 +196,7 @@ export async function updateUser(req,res,next)
     try {
         // const id=req.query.id;
         const {id}=req.user.userinfo;
-        console.log(req.user);
+        // console.log(req.user);
         
         if(!id){
             return res.status(401).json({message:"id required!"})
@@ -240,7 +240,7 @@ export async function generateOTP(req,res){
     
     req.app.locals.OTP=otpGenerator.generate(6,{lowerCaseAlphabets:false,upperCaseAlphabets:false,specialChars:false})
     
-    console.log(req.app.locals);
+    // console.log(req.app.locals);
     res.status(201).json({OTP:req.app.locals.OTP})
 }
 
@@ -250,7 +250,7 @@ export async function generateOTP(req,res){
 export async function verifyOTP(req,res)
 {
     const {otp}=req.query;
-    console.log("req.app.locals.OTP",req.app.locals.OTP,otp);
+    // console.log("req.app.locals.OTP",req.app.locals.OTP,otp);
     
     if(parseInt(req.app.locals.OTP)===parseInt(otp)){
         req.app.locals.OTP=null,//reset the otp
