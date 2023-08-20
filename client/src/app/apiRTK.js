@@ -5,13 +5,13 @@ import { toast } from "react-hot-toast"
 // import axios from "axios"
 
 // base url
-axios.defaults.baseURL=process.env.React_App_Server_Domain
+axios.defaults.baseURL=process.env.Server_Url||process.env.React_App_Server_Domain
 
 
 export const apiRTK=createApi({
     reducerPath:"apiRTK",
     baseQuery:fetchBaseQuery({
-        baseUrl:"http://localhost:8001"
+        baseUrl:process.env.Server_Url||"http://localhost:8001"
     }),
     tagTypes: ['User'],
     endpoints:builder=>({

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux"
 
 
 // base url
-axois.defaults.baseURL=process.env.React_App_Server_Domain
+axois.defaults.baseURL=process.env.Server_Url||process.env.React_App_Server_Domain
 
 
 export async function authenticate(username){
