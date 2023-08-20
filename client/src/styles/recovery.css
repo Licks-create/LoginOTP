@@ -1,0 +1,20 @@
+.container .form{
+    grid-template-rows: 20% 50% 5%;
+    /* align-content: center; */
+}
+.form::before{
+    content: "";
+}
+.container .form .username {
+    display: grid;
+    grid-template-rows: 10% auto; 
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+.username button{
+height: 90%;
+}
+.container .form .username span{
+color: rgb(63, 58, 58);
+}
