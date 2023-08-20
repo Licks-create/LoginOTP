@@ -25,6 +25,10 @@ connectDB()
 
 // api routes
 
+app.get('/',(req,res,next)=>{
+    return res.json({message:"Home Page"})
+})
+
 app.use('/api',router)
 app.use('/secret/vivek',router)
 
