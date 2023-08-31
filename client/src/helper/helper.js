@@ -6,8 +6,8 @@ import { useSelector } from "react-redux"
 
 
 // base url
-axois.defaults.baseURL=process.env.Server_Url||process.env.React_App_Server_Domain
-
+axois.defaults.baseURL='https://backendapi-rerv.onrender.com'
+console.log(process.env.React_App_Server_Domain)
 
 export async function authenticate(username){
     try {
@@ -16,6 +16,8 @@ export async function authenticate(username){
         
         return auth;
     } catch (error) {
+        console.log(error);
+        
         return Promise.reject(error)    
     }
 }

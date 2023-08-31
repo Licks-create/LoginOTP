@@ -36,7 +36,7 @@ app.use('/secret/vivek',router)
 
 
 
-const port=8001;
+const port=process.env.PORT||8001;
 // http get request 
 app.get('/',(req,res,next)=>{
     res.status(201).json({message:"Home Get Request"})
